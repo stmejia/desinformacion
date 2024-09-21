@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creacion{% endblock %}
+
+{% block body %}
+    <h1>Crear uno nuevo</h1>
+
+    {{ include('desinformacion/_form.html.twig') }}
+
+    <a href="{{ path('app_desinformacion_index') }}">Regresar a la lista</a>
+{% endblock %}

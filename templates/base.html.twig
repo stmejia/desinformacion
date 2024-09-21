@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Aplicación{% endblock %}</title>
+    
+    <!-- Bootstrap CSS desde CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Tu CSS personalizado si es necesario -->
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Control de Desinformación</h1>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ path('app_desinformacion_index') }}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ path('app_desinformacion_new') }}">Nueva Desinformación</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="text-center py-3">
+        <p>&copy; {{ "now"|date("Y") }} Control de Desinformación</p>
+    </footer>
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

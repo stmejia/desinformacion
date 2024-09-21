@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Desinformaciones{% endblock %}
+
+{% block body %}
+    <h1>Lista de Desinformaciones</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Estado Interno</th>
+                <th>Titular</th>
+                <th>Palabras Clave</th>
+                <th>Fecha de Registro</th>
+                <th>Multimedia Asociado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for desinformacion in desinformacions %}
+                <tr>
+                    <td>{{ desinformacion.estadoInterno }}</td>
+                    <td>{{ desinformacion.titular }}</td>
+                    <td>{{ desinformacion.palabrasClave }}</td>
+                    <td>{{ desinformacion.fechaRegistro|date('Y-m-d H:i') }}</td>
+                    <td>
+                        {% if desinformacion.multimedia %}
+                            <a href="{{ asset('uploads/' ~ desinformacion.multimedia) }}" target="_blank">Ver Multimedia</a>
+                        {% else %}
+                            Sin Multimedia
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_desinformacion_edit', { id: desinformacion.id }) }}">Editar</a>
+                        <form method="post" action="{{ path('app_desinformacion_delete', { id: desinformacion.id }) }}" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ desinformacion.id) }}">
+                            <button class="btn btn-danger" type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_desinformacion_new') }}" class="btn btn-primary">Registrar Nueva Desinformación</a>
+{% endblock %}

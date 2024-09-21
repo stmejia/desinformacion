@@ -1,0 +1,19 @@
+--Tuve problemas al generar el archivo sql, por lo que opté por colocar el script para la creación.
+--Gracias por la comprensión.
+
+-- Creación de la base de datos
+CREATE DATABASE desinformacion ;
+USE desinformacion ;
+
+--Creación de Tabla
+CREATE TABLE desinformacion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titular VARCHAR(255) NOT NULL,
+    contenido TEXT NOT NULL,
+    fecha_registro DATETIME NOT NULL,
+    red_social VARCHAR(100) NOT NULL,
+    multimedia VARCHAR(255) DEFAULT NULL,
+    palabras_clave VARCHAR(255) NOT NULL,
+    estado_interno ENUM('desmentido', 'no verificable', 'en investigación') NOT NULL,
+    observaciones TEXT DEFAULT NULL
+);

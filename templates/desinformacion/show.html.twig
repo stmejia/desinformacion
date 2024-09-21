@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Desinformacion{% endblock %}
+
+{% block body %}
+    <h1>Desinformacion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ desinformacion.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_desinformacion_index') }}">Regresar a la lista</a>
+
+    <a href="{{ path('app_desinformacion_edit', {'id': desinformacion.id}) }}">Editar</a>
+
+    {{ include('desinformacion/_delete_form.html.twig') }}
+{% endblock %}
