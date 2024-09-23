@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class DesinformacionType extends AbstractType
 {
@@ -17,9 +18,9 @@ class DesinformacionType extends AbstractType
         $builder
             ->add('titular', TextType::class)
             ->add('contenido', TextareaType::class)
-            ->add('fecha_registro', null, [
+            ->add('fecha_registro', DateTimeType::class, [
                 'widget' => 'single_text',
-                'disabled' => true, // Deshabilitar en la edición
+                'disabled' => false, // Deshabilitar en la edición
             ])
             ->add('red_social', ChoiceType::class, [
                 'choices' => [
