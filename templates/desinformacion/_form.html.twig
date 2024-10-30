@@ -1,4 +1,53 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+    <div class="form-group">
+        {{ form_label(form.titular) }}
+        {{ form_widget(form.titular, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.titular) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.contenido) }}
+        {{ form_widget(form.contenido, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.contenido) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.fecha_registro) }}
+        {{ form_widget(form.fecha_registro, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.fecha_registro) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.red_social) }}
+        {{ form_widget(form.red_social, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.red_social) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.multimedia) }}
+        {{ form_widget(form.multimedia, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.multimedia) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.palabras_clave) }}
+        {{ form_widget(form.palabras_clave, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.palabras_clave) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.estado_interno) }}
+        {{ form_widget(form.estado_interno, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.estado_interno) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.observaciones) }}
+        {{ form_widget(form.observaciones, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.observaciones) }}
+    </div>
+
+    <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+
 {{ form_end(form) }}

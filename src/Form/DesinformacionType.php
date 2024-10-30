@@ -15,12 +15,14 @@ class DesinformacionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $isEdit = $options['is_edit']; // Obtenemos la opción personalizada
+
         $builder
             ->add('titular', TextType::class)
             ->add('contenido', TextareaType::class)
             ->add('fecha_registro', DateTimeType::class, [
                 'widget' => 'single_text',
-                'disabled' => false, // Deshabilitar en la edición
+                'disabled' => $isEdit, // Deshabilitar solo en modo edición
             ])
             ->add('red_social', ChoiceType::class, [
                 'choices' => [
@@ -52,6 +54,7 @@ class DesinformacionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Desinformacion::class,
+            'is_edit' => false, // Valor por defecto para la opción personalizada
         ]);
     }
 }

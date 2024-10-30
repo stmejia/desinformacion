@@ -31,7 +31,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{{ path('app_desinformacion_edit', { id: desinformacion.id }) }}">Editar</a>
+                        <a class="btn btn-primary" href="{{ path('app_desinformacion_edit', { id: desinformacion.id }) }}">Editar</a>
                         <form method="post" action="{{ path('app_desinformacion_delete', { id: desinformacion.id }) }}" style="display:inline;">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ desinformacion.id) }}">
                             <button class="btn btn-danger" type="submit">Eliminar</button>

@@ -32,7 +32,7 @@ class Desinformacion
     #[ORM\Column(type: 'string', length: 255)]
     private string $palabrasClave;
 
-    #[ORM\Column(type: 'string', columnDefinition: "ENUM('desmentido', 'no verificable', 'en investigación')")]
+    #[ORM\Column(type: 'enum')]
     private string $estadoInterno;
 
     #[ORM\Column(type: 'text', nullable: true)]

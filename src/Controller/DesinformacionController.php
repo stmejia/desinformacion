@@ -27,11 +27,17 @@ final class DesinformacionController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $desinformacion = new Desinformacion();
-        $form = $this->createForm(DesinformacionType::class, $desinformacion);
+        $form = $this->createForm(DesinformacionType::class, $desinformacion, [
+            'is_edit' => false, // Modo creación, el campo estará habilitado
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+             // Establecer la fecha actual si es nuevo
+            if (!$desinformacion->getFechaRegistro()) {
+                $desinformacion->setFechaRegistro(new \DateTime());
+            }
+                
             // Obtenemos  el archivo multimedia del formulario
             $file = $form->get('multimedia')->getData();
 
@@ -49,7 +55,6 @@ final class DesinformacionController extends AbstractController
                     $this->addFlash('error', 'No se pudo subir el archivo: ' . $e->getMessage());
                 }
             }
-
 
             $entityManager->persist($desinformacion);
             $entityManager->flush();
@@ -76,7 +81,9 @@ final class DesinformacionController extends AbstractController
     #[Route('/{id}/edit', name: 'app_desinformacion_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Desinformacion $desinformacion, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(DesinformacionType::class, $desinformacion);
+        $form = $this->createForm(DesinformacionType::class, $desinformacion, [
+            'is_edit' => true, // Modo edición, el campo estará deshabilitado
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
